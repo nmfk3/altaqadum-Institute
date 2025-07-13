@@ -3,45 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>لوحة إدارة معهد التقدم </title>
+    <title>معهد التقدم للدروس الخصوصية - لوحة التحكم</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4c51bf;
-            --primary-light: #667eea;
-            --secondary: #38b2ac;
-            --success: #48bb78;
-            --warning: #ed8936;
-            --danger: #e53e3e;
-            --dark: #2d3748;
-            --light: #f7fafc;
-            --gray: #e2e8f0;
-            --text: #2d3748;
-            --text-light: #718096;
-            --border: #cbd5e0;
-            --card-bg: #ffffff;
-            --sidebar-bg: #2d3748;
-            --header-bg: #ffffff;
-            --main-bg: #f7fafc;
+            --primary: #FF9800;
+            --primary-light: #FFB74D;
+            --primary-dark: #F57C00;
+            --secondary: #FFA726;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #F44336;
+            --light: #FFF8E1;
+            --dark: #212121;
+            --gray: #F5F5F5;
+            --text: #333333;
+            --text-light: #757575;
+            --border: #E0E0E0;
+            --card-bg: #FFFFFF;
+            --sidebar-bg: #FFFFFF;
+            --header-bg: #FFFFFF;
+            --main-bg: #FFF8E1;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .dark-mode {
-            --primary: #667eea;
-            --primary-light: #7f9cf5;
-            --secondary: #81e6d9;
-            --success: #68d391;
-            --warning: #f6ad55;
-            --danger: #fc8181;
-            --dark: #1a202c;
-            --light: #1a202c;
-            --gray: #2d3748;
-            --text: #e2e8f0;
-            --text-light: #a0aec0;
-            --border: #4a5568;
-            --card-bg: #2d3748;
-            --sidebar-bg: #1a202c;
-            --header-bg: #2d3748;
-            --main-bg: #1a202c;
+            --primary: #FFB74D;
+            --primary-light: #FFCC80;
+            --primary-dark: #FF9800;
+            --secondary: #FFCC80;
+            --success: #66BB6A;
+            --warning: #FFD54F;
+            --danger: #EF5350;
+            --light: #1A1A1A;
+            --dark: #E0E0E0;
+            --gray: #2D2D2D;
+            --text: #E0E0E0;
+            --text-light: #9E9E9E;
+            --border: #424242;
+            --card-bg: #252525;
+            --sidebar-bg: #1E1E1E;
+            --header-bg: #252525;
+            --main-bg: #121212;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         * {
@@ -72,30 +76,52 @@
 
         /* الشريط الجانبي */
         .sidebar {
-            width: 250px;
+            width: 280px;
             background-color: var(--sidebar-bg);
-            color: white;
+            color: var(--text);
             padding: 20px 0;
             display: flex;
             flex-direction: column;
+            box-shadow: var(--shadow);
+            z-index: 100;
         }
 
         .logo-container {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
             margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
         }
 
         .logo {
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 10px;
-            font-size: 1.5rem;
-            font-weight: bold;
         }
 
         .logo i {
-            color: var(--primary-light);
+            font-size: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo h1 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
         .nav-menu {
@@ -103,34 +129,39 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            padding: 0 10px;
+            padding: 0 15px;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 12px 15px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 10px;
             cursor: pointer;
-            color: var(--text-light);
+            color: var(--text);
             text-decoration: none;
             transition: all 0.2s;
+            font-weight: 500;
+            border: 1px solid transparent;
         }
 
         .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
+            background-color: var(--primary-light);
+            color: #fff;
+            border-color: var(--primary);
         }
 
         .nav-item.active {
             background-color: var(--primary);
             color: white;
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
         }
 
         .nav-item i {
             width: 24px;
             text-align: center;
+            font-size: 1.2rem;
         }
 
         /* المحتوى الرئيسي */
@@ -143,12 +174,13 @@
         /* رأس الصفحة */
         .header {
             background-color: var(--header-bg);
-            padding: 15px 25px;
+            padding: 15px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             border-bottom: 1px solid var(--border);
+            z-index: 50;
         }
 
         .header-actions {
@@ -158,25 +190,25 @@
         }
 
         .action-btn {
-            background: none;
+            background: var(--primary);
             border: none;
-            color: var(--text);
+            color: white;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 15px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
+            padding: 10px 18px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(255, 152, 0, 0.2);
         }
 
         .action-btn:hover {
-            background-color: var(--gray);
-        }
-
-        .dark-mode .action-btn:hover {
-            background-color: var(--dark);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
         }
 
         .search-container {
@@ -186,16 +218,18 @@
 
         .search-container input {
             width: 100%;
-            padding: 10px 15px 10px 40px;
-            border-radius: 8px;
+            padding: 12px 15px 12px 45px;
+            border-radius: 30px;
             border: 1px solid var(--border);
             background-color: var(--card-bg);
             color: var(--text);
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
 
         .search-container i {
             position: absolute;
-            left: 15px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-light);
@@ -203,31 +237,48 @@
 
         body[dir="rtl"] .search-container i {
             left: auto;
-            right: 15px;
+            right: 20px;
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-details .name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .user-details .role {
+            font-size: 0.85rem;
+            color: var(--text-light);
         }
 
         /* محتوى الصفحة */
         .content {
-            padding: 25px;
+            padding: 30px;
             flex: 1;
+            overflow-y: auto;
         }
 
         .page-title {
@@ -236,112 +287,172 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            color: var(--primary-dark);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .page-title i {
+            background-color: rgba(255, 152, 0, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
         }
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
         }
 
         .stat-card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
             border: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 20px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .icon-employees {
+            background: linear-gradient(135deg, #4FC3F7 0%, #0288D1 100%);
+            color: white;
+        }
+
+        .icon-salaries {
+            background: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%);
+            color: white;
         }
 
         .icon-students {
-            background-color: rgba(102, 126, 234, 0.1);
-            color: var(--primary);
-        }
-
-        .icon-teachers {
-            background-color: rgba(56, 178, 172, 0.1);
-            color: var(--secondary);
-        }
-
-        .icon-courses {
-            background-color: rgba(237, 137, 54, 0.1);
-            color: var(--warning);
+            background: linear-gradient(135deg, #FFB74D 0%, #F57C00 100%);
+            color: white;
         }
 
         .icon-revenue {
-            background-color: rgba(72, 187, 120, 0.1);
-            color: var(--success);
+            background: linear-gradient(135deg, #BA68C8 0%, #7B1FA2 100%);
+            color: white;
+        }
+
+        .stat-info {
+            flex: 1;
         }
 
         .stat-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
             color: var(--text-light);
+            font-weight: 500;
         }
 
-        .stat-info p {
-            font-size: 1.8rem;
-            font-weight: bold;
+        .stat-info .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+
+        .stat-info .change {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .stat-info .change.down {
+            color: var(--danger);
         }
 
         .section-title {
-            font-size: 1.4rem;
-            margin: 30px 0 20px;
-            padding-bottom: 10px;
+            font-size: 1.5rem;
+            margin: 40px 0 25px;
+            padding-bottom: 12px;
             border-bottom: 2px solid var(--primary);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            color: var(--primary-dark);
+        }
+
+        .section-title i {
+            background-color: rgba(255, 152, 0, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
         }
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
         .card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .card-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-dark);
         }
 
         .card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(102, 126, 234, 0.1);
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            font-size: 1.3rem;
         }
 
         .recent-list {
@@ -351,7 +462,7 @@
         .recent-item {
             display: flex;
             align-items: center;
-            padding: 12px 0;
+            padding: 15px 0;
             border-bottom: 1px solid var(--border);
         }
 
@@ -360,15 +471,17 @@
         }
 
         .recent-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-left: 10px;
             background-color: var(--gray);
             color: var(--text);
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
         .dark-mode .recent-icon {
@@ -380,18 +493,32 @@
         }
 
         .recent-info h4 {
-            font-size: 1rem;
-            margin-bottom: 3px;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
         }
 
         .recent-info p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-light);
         }
 
         .recent-time {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-light);
+            font-weight: 500;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* تذييل الصفحة */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
 
         /* عناصر التحكم */
@@ -447,10 +574,13 @@
         /* الوضع المتنقل */
         @media (max-width: 992px) {
             .sidebar {
-                width: 70px;
+                width: 80px;
             }
-            .logo span, .nav-item span {
+            .logo h1, .logo p, .nav-item span {
                 display: none;
+            }
+            .logo i {
+                margin-top: 10px;
             }
             .nav-item {
                 justify-content: center;
@@ -470,7 +600,7 @@
                 padding: 10px;
             }
             .logo-container {
-                padding: 10px;
+                padding: 15px;
                 margin-bottom: 10px;
                 display: flex;
                 justify-content: space-between;
@@ -483,9 +613,9 @@
             }
             .nav-item {
                 flex-direction: column;
-                padding: 10px;
+                padding: 12px;
                 gap: 5px;
-                min-width: 70px;
+                min-width: 80px;
             }
             .nav-item span {
                 font-size: 0.8rem;
@@ -493,9 +623,12 @@
             }
             .header {
                 padding: 10px 15px;
+                flex-wrap: wrap;
             }
             .search-container {
-                display: none;
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
             }
             .stats-container {
                 grid-template-columns: 1fr;
@@ -513,7 +646,8 @@
             <div class="logo-container">
                 <div class="logo">
                     <i class="fas fa-graduation-cap"></i>
-                    <span>معهد النجاح</span>
+                    <h1>معهد التقدم للدروس الخصوصية</h1>
+                    <p>نحو مستقبل تعليمي أفضل</p>
                 </div>
             </div>
             
@@ -524,27 +658,27 @@
                 </a>
                 <a href="#" class="nav-item">
                     <i class="fas fa-users"></i>
-                    <span>الطلاب</span>
+                    <span>الموظفين</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <span>المدرسون</span>
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>رواتب الموظفين</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <i class="fas fa-book"></i>
-                    <span>الكورسات</span>
+                    <i class="fas fa-user-plus"></i>
+                    <span>تسجيل الطلاب الجدد</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>الإيرادات</span>
                 </a>
                 <a href="#" class="nav-item">
                     <i class="fas fa-calendar-alt"></i>
                     <span>الجدول</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <span>المالية</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>التقارير</span>
+                    <i class="fas fa-book"></i>
+                    <span>الكورسات</span>
                 </a>
                 <a href="#" class="nav-item">
                     <i class="fas fa-cog"></i>
@@ -560,6 +694,7 @@
                 <div class="header-actions">
                     <button class="action-btn" id="menuToggle">
                         <i class="fas fa-bars"></i>
+                        <span>القائمة</span>
                     </button>
                     <h1>لوحة التحكم الإدارية</h1>
                 </div>
@@ -582,9 +717,9 @@
                     
                     <div class="user-info">
                         <div class="user-avatar">م</div>
-                        <div>
-                            <div>مدير النظام</div>
-                            <small>admin@institute.com</small>
+                        <div class="user-details">
+                            <div class="name">مدير النظام</div>
+                            <div class="role">admin@tqdm.com</div>
                         </div>
                     </div>
                 </div>
@@ -599,42 +734,58 @@
                 
                 <div class="stats-container">
                     <div class="stat-card">
+                        <div class="stat-icon icon-employees">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>الموظفين</h3>
+                            <div class="number">42</div>
+                            <div class="change">
+                                <i class="fas fa-arrow-up"></i>
+                                3 موظفين جدد
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon icon-salaries">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>رواتب الموظفين</h3>
+                            <div class="number">$28,500</div>
+                            <div class="change">
+                                <i class="fas fa-arrow-down"></i>
+                                2.5% عن الشهر الماضي
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
                         <div class="stat-icon icon-students">
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <div class="stat-info">
                             <h3>الطلاب المسجلين</h3>
-                            <p>1,248</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon icon-teachers">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>المدرسون</h3>
-                            <p>42</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon icon-courses">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>الكورسات</h3>
-                            <p>36</p>
+                            <div class="number">1,248</div>
+                            <div class="change">
+                                <i class="fas fa-arrow-up"></i>
+                                56 طالب جديد
+                            </div>
                         </div>
                     </div>
                     
                     <div class="stat-card">
                         <div class="stat-icon icon-revenue">
-                            <i class="fas fa-dollar-sign"></i>
+                            <i class="fas fa-chart-line"></i>
                         </div>
                         <div class="stat-info">
                             <h3>الإيرادات الشهرية</h3>
-                            <p>$24,850</p>
+                            <div class="number">$86,420</div>
+                            <div class="change">
+                                <i class="fas fa-arrow-up"></i>
+                                12.4% عن الشهر الماضي
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -659,7 +810,7 @@
                                 </div>
                                 <div class="recent-info">
                                     <h4>محمد أحمد</h4>
-                                    <p>مسجل في دورة البرمجة</p>
+                                    <p>مسجل في دورة الرياضيات المتقدمة</p>
                                 </div>
                                 <div class="recent-time">منذ ساعة</div>
                             </li>
@@ -669,7 +820,7 @@
                                 </div>
                                 <div class="recent-info">
                                     <h4>سارة عبد الله</h4>
-                                    <p>مسجلة في دورة التصميم</p>
+                                    <p>مسجلة في دورة الفيزياء</p>
                                 </div>
                                 <div class="recent-time">منذ 3 ساعات</div>
                             </li>
@@ -682,6 +833,16 @@
                                     <p>مسجل في دورة اللغة الإنجليزية</p>
                                 </div>
                                 <div class="recent-time">منذ 5 ساعات</div>
+                            </li>
+                            <li class="recent-item">
+                                <div class="recent-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="recent-info">
+                                    <h4>نورا سعيد</h4>
+                                    <p>مسجلة في دورة الكيمياء</p>
+                                </div>
+                                <div class="recent-time">منذ يوم</div>
                             </li>
                         </ul>
                     </div>
@@ -724,51 +885,76 @@
                                 </div>
                                 <div class="recent-time">$200</div>
                             </li>
+                            <li class="recent-item">
+                                <div class="recent-icon">
+                                    <i class="fas fa-money-bill"></i>
+                                </div>
+                                <div class="recent-info">
+                                    <h4>فاطمة علي</h4>
+                                    <p>دفع رسوم دورة اللغة العربية</p>
+                                </div>
+                                <div class="recent-time">$110</div>
+                            </li>
                         </ul>
                     </div>
                     
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">الأنشطة القادمة</div>
+                            <div class="card-title">الموظفين المميزين</div>
                             <div class="card-icon">
-                                <i class="fas fa-calendar-check"></i>
+                                <i class="fas fa-star"></i>
                             </div>
                         </div>
                         <ul class="recent-list">
                             <li class="recent-item">
                                 <div class="recent-icon">
-                                    <i class="fas fa-chalkboard"></i>
+                                    <i class="fas fa-chalkboard-teacher"></i>
                                 </div>
                                 <div class="recent-info">
-                                    <h4>امتحان نهائي</h4>
-                                    <p>دورة البرمجة المتقدمة</p>
+                                    <h4>أ. أحمد محمود</h4>
+                                    <p>مدرس الرياضيات - أعلى تقييم</p>
                                 </div>
-                                <div class="recent-time">غدًا</div>
+                                <div class="recent-time">4.9/5</div>
                             </li>
                             <li class="recent-item">
                                 <div class="recent-icon">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-chalkboard-teacher"></i>
                                 </div>
                                 <div class="recent-info">
-                                    <h4>اجتماع المدرسين</h4>
-                                    <p>مناقشة المناهج الجديدة</p>
+                                    <h4>أ. سارة عبد الرحمن</h4>
+                                    <p>مدرسة الفيزياء - أكثر طلاب</p>
                                 </div>
-                                <div class="recent-time">بعد 3 أيام</div>
+                                <div class="recent-time">42 طالب</div>
                             </li>
                             <li class="recent-item">
                                 <div class="recent-icon">
-                                    <i class="fas fa-graduation-cap"></i>
+                                    <i class="fas fa-user-tie"></i>
                                 </div>
                                 <div class="recent-info">
-                                    <h4>حفل التخرج</h4>
-                                    <p>الدفعة الخامسة عشر</p>
+                                    <h4>م. خالد سليم</h4>
+                                    <p>مدير الإدارة - 5 سنوات خدمة</p>
                                 </div>
-                                <div class="recent-time">بعد أسبوعين</div>
+                                <div class="recent-time">مثال</div>
+                            </li>
+                            <li class="recent-item">
+                                <div class="recent-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="recent-info">
+                                    <h4>أ. محمد عمر</h4>
+                                    <p>مشرف عام - أكثر فعالية</p>
+                                </div>
+                                <div class="recent-time">98%</div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </section>
+            
+            <!-- تذييل الصفحة -->
+            <footer class="footer">
+                <p>جميع الحقوق محفوظة © 2023 معهد التقدم للدروس الخصوصية | نظام الإدارة التعليمية</p>
+            </footer>
         </main>
     </div>
 
@@ -810,18 +996,22 @@
                 document.documentElement.lang = 'en';
                 document.documentElement.dir = 'ltr';
                 langText.textContent = 'English';
-                document.querySelector('.logo span').textContent = 'Success Institute';
-                document.querySelector('h1').textContent = 'Admin Dashboard';
+                document.querySelector('.logo h1').textContent = 'Taqaddum Private Tutoring Institute';
+                document.querySelector('.logo p').textContent = 'Towards a better educational future';
+                document.querySelector('h1').textContent = 'Administrative Dashboard';
                 document.querySelector('.page-title').innerHTML = '<i class="fas fa-tachometer-alt"></i> Main Dashboard';
                 document.querySelector('.section-title').innerHTML = '<i class="fas fa-bell"></i> Recent Notifications';
+                document.querySelector('.footer p').textContent = 'All rights reserved © 2023 Taqaddum Private Tutoring Institute | Educational Management System';
             } else {
                 document.documentElement.lang = 'ar';
                 document.documentElement.dir = 'rtl';
                 langText.textContent = 'العربية';
-                document.querySelector('.logo span').textContent = 'معهد النجاح';
+                document.querySelector('.logo h1').textContent = 'معهد التقدم للدروس الخصوصية';
+                document.querySelector('.logo p').textContent = 'نحو مستقبل تعليمي أفضل';
                 document.querySelector('h1').textContent = 'لوحة التحكم الإدارية';
                 document.querySelector('.page-title').innerHTML = '<i class="fas fa-tachometer-alt"></i> لوحة التحكم الرئيسية';
                 document.querySelector('.section-title').innerHTML = '<i class="fas fa-bell"></i> الإشعارات الحديثة';
+                document.querySelector('.footer p').textContent = 'جميع الحقوق محفوظة © 2023 معهد التقدم للدروس الخصوصية | نظام الإدارة التعليمية';
             }
             
             // حفظ تفضيل اللغة في التخزين المحلي
@@ -833,10 +1023,12 @@
             document.documentElement.lang = 'en';
             document.documentElement.dir = 'ltr';
             langText.textContent = 'English';
-            document.querySelector('.logo span').textContent = 'Success Institute';
-            document.querySelector('h1').textContent = 'Admin Dashboard';
+            document.querySelector('.logo h1').textContent = 'Taqaddum Private Tutoring Institute';
+            document.querySelector('.logo p').textContent = 'Towards a better educational future';
+            document.querySelector('h1').textContent = 'Administrative Dashboard';
             document.querySelector('.page-title').innerHTML = '<i class="fas fa-tachometer-alt"></i> Main Dashboard';
             document.querySelector('.section-title').innerHTML = '<i class="fas fa-bell"></i> Recent Notifications';
+            document.querySelector('.footer p').textContent = 'All rights reserved © 2023 Taqaddum Private Tutoring Institute | Educational Management System';
         }
         
         // تبديل القائمة (للعرض على الأجهزة الصغيرة)
