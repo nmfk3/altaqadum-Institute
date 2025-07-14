@@ -1750,6 +1750,30 @@
     </div>
 
     <script>
+        // وظائف حفظ واستعادة البيانات من LocalStorage
+        function saveAppData() {
+            localStorage.setItem('employeesData', JSON.stringify(employeesData));
+            localStorage.setItem('studentsData', JSON.stringify(studentsData));
+            localStorage.setItem('transactionsData', JSON.stringify(transactionsData));
+            localStorage.setItem('scheduleData', JSON.stringify(scheduleData));
+            localStorage.setItem('userData', JSON.stringify(userData));
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        function loadAppData() {
+            const storedEmployees = localStorage.getItem('employeesData');
+            const storedStudents = localStorage.getItem('studentsData');
+            const storedTransactions = localStorage.getItem('transactionsData');
+            const storedSchedule = localStorage.getItem('scheduleData');
+            const storedUser = localStorage.getItem('userData');
+            
+            if (storedEmployees) employeesData = JSON.parse(storedEmployees);
+            if (storedStudents) studentsData = JSON.parse(storedStudents);
+            if (storedTransactions) transactionsData = JSON.parse(storedTransactions);
+            if (storedSchedule) scheduleData = JSON.parse(storedSchedule);
+            if (storedUser) userData = JSON.parse(storedUser);
+        }
+
         // بيانات التطبيق
         let employeesData = [
             { id: 1, name: "أحمد محمود", position: "مدرس", department: "الرياضيات", salary: "850 دينار", phone: "0123456789", email: "ahmed@example.com", hireDate: "2022-01-15" },
@@ -1800,14 +1824,17 @@
             
             // محاكاة عملية تسجيل الدخول
             setTimeout(() => {
-                if (username === userData.username && password === userData.password) {
+                // تحميل بيانات المستخدم من localStorage
+                const storedUserData = JSON.parse(localStorage.getItem('userData')) || userData;
+                
+                if (username === storedUserData.username && password === storedUserData.password) {
                     // إخفاء صفحة تسجيل الدخول وإظهار لوحة التحكم
                     document.getElementById('loginPage').style.display = 'none';
                     document.querySelector('.app-container').style.display = 'flex';
                     
                     // تحديث معلومات المستخدم في الشريط العلوي
-                    document.querySelector('.user-details .name').textContent = userData.fullName;
-                    document.querySelector('.user-details .role').textContent = userData.email;
+                    document.querySelector('.user-details .name').textContent = storedUserData.fullName;
+                    document.querySelector('.user-details .role').textContent = storedUserData.email;
                     
                     // تفعيل صفحة الرئيسية
                     switchPage('dashboard');
@@ -2124,6 +2151,7 @@
                     renderTransactionsTable();
                     showAlert('تم حذف الحركة المالية بنجاح', 'success', 'revenueAlertContainer');
                     updateDashboardStats();
+                    saveAppData(); // حفظ البيانات بعد التعديل
                 }
             }
         }
@@ -2209,6 +2237,7 @@
                     renderEmployeesTable();
                     showAlert('تم حذف بيانات الموظف بنجاح', 'success', 'employeesAlertContainer');
                     updateDashboardStats();
+                    saveAppData(); // حفظ البيانات بعد التعديل
                 }
             }
         }
@@ -2279,6 +2308,7 @@
                     renderStudentsTable();
                     showAlert('تم حذف بيانات الطالب بنجاح', 'success', 'studentsAlertContainer');
                     updateDashboardStats();
+                    saveAppData(); // حفظ البيانات بعد التعديل
                 }
             }
         }
@@ -2349,6 +2379,7 @@
                     document.getElementById('scheduleId').value = '';
                     document.getElementById('scheduleSubmitBtn').innerHTML = '<i class="fas fa-plus"></i> إضافة الحصة';
                     document.getElementById('scheduleDeleteBtn').style.display = 'none';
+                    saveAppData(); // حفظ البيانات بعد التعديل
                 }
             }
         }
@@ -2398,6 +2429,9 @@
         
         // تهيئة التطبيق
         function initApp() {
+            // تحميل البيانات المحفوظة من LocalStorage
+            loadAppData();
+            
             // تعيين تاريخ اليوم كتاريخ افتراضي
             const today = new Date();
             const formattedDate = today.toISOString().split('T')[0];
@@ -2470,6 +2504,7 @@
                 // تحديث الجدول والإحصائيات
                 renderTransactionsTable();
                 updateDashboardStats();
+                saveAppData(); // حفظ البيانات بعد التعديل
             });
             
             // تهيئة نموذج الموظفين
@@ -2513,6 +2548,7 @@
                 
                 // تحديث قائمة المدرسين في صفحة الجدول
                 loadTeachers();
+                saveAppData(); // حفظ البيانات بعد التعديل
             });
             
             // تهيئة نموذج الطلاب
@@ -2563,6 +2599,7 @@
                 // تحديث الجدول والإحصائيات
                 renderStudentsTable();
                 updateDashboardStats();
+                saveAppData(); // حفظ البيانات بعد التعديل
             });
             
             // تهيئة زر اختيار الكل للمواد
@@ -2614,6 +2651,7 @@
                 
                 // تحديث الجدول
                 renderScheduleTable();
+                saveAppData(); // حفظ البيانات بعد التعديل
             });
             
             // تهيئة زر حذف الحصة
@@ -2641,6 +2679,10 @@
                 }
                 
                 userData.password = newPassword;
+                
+                // حفظ بيانات المستخدم في localStorage
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
                 showAlert('تم تغيير كلمة المرور بنجاح', 'success', 'settingsAlertContainer');
                 this.reset();
             });
@@ -2660,11 +2702,22 @@
                 document.querySelector('.user-details .role').textContent = email;
                 
                 showAlert('تم تحديث معلومات المستخدم بنجاح', 'success', 'settingsAlertContainer');
+                
+                // حفظ بيانات المستخدم في localStorage
+                localStorage.setItem('userData', JSON.stringify(userData));
+            });
+            
+            // حفظ البيانات عند إغلاق الصفحة
+            window.addEventListener('beforeunload', function() {
+                saveAppData();
             });
         }
 
         // تهيئة الصفحة عند التحميل
         document.addEventListener('DOMContentLoaded', function() {
+            // تحميل البيانات المحفوظة
+            loadAppData();
+            
             // تهيئة نموذج تسجيل الدخول
             document.getElementById('loginForm').addEventListener('submit', function(e) {
                 e.preventDefault();
