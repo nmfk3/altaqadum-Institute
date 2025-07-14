@@ -1282,7 +1282,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="transactionAmount">المبلغ (دينار)</label>
+                                <label for="transactionAmount">المبلغ (دينار عراقي)</label>
                                 <input type="number" id="transactionAmount" class="form-control" min="0" step="0.01" required>
                             </div>
                             
@@ -1398,11 +1398,15 @@
                                     <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
                                     <option value="الإدارة">الإدارة</option>
                                     <option value="المالية">المالية</option>
+                                    <option value="الفيزياء">الفيزياء </option>
+                                    <option value="الكيمياء">الكيمياء</option>
+                                    <option value="الأحياء">الاحياء</option>
+                                    <option value="إسلامية">اسلامية</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="employeeSalary">الراتب (دينار)</label>
+                                <label for="employeeSalary">الراتب (دينار عراقي)</label>
                                 <input type="number" id="employeeSalary" class="form-control" min="0" step="0.01" required>
                             </div>
                             
@@ -1491,12 +1495,18 @@
                                 <label for="studentGrade">الصف</label>
                                 <select id="studentGrade" class="form-control" required>
                                     <option value="">اختر الصف</option>
-                                    <option value="السابع">السابع</option>
-                                    <option value="الثامن">الثامن</option>
-                                    <option value="التاسع">التاسع</option>
-                                    <option value="العاشر">العاشر</option>
-                                    <option value="الحادي عشر">الحادي عشر</option>
-                                    <option value="الثاني عشر">الثاني عشر</option>
+                                    <option value="اول ابتدائي">اول ابتدائي</option>
+                                    <option value="ثاني ابتدائي">ثاني ابتدائي</option>
+                                    <option value="ثالث ابتدائي">ثالث ابتدائي</option>
+                                    <option value="رابع ابتدائي">رابع ابتدائي</option>
+                                    <option value="خامس ابتدائي">خامس ابتدائي</option>
+                                    <option value="سادس ابتدائي">سادس ابتدائي</option>
+                                    <option value="اول متوسط">اول متوسط</option>
+                                    <option value="ثاني متوسط">ثاني متوسط</option>
+                                    <option value="ثالث متوسط">ثالث متوسط</option>
+                                    <option value="رابع اعدادي">رابع اعدادي</option>
+                                    <option value="خامس اعدادي">خامس اعدادي</option>
+                                    <option value="سادس اعدادي">سادس اعدادي</option>
                                 </select>
                             </div>
                             
@@ -1522,6 +1532,12 @@
                                         <label class="course-option">
                                             <input type="checkbox" name="studentCourse" value="اللغة الإنجليزية"> اللغة الإنجليزية
                                         </label>
+                                        <input type="checkbox" name="studentCourse" value="علوم"> علوم
+                                        </label>
+                                        <label class="course-option">
+                                          <input type="checkbox" name="studentCourse" value="اسلامية"> اسلامية
+                                        </label>
+                                        <label class="course-option">  
                                     </div>
                                     <button type="button" class="select-all-btn" id="selectAllCourses">
                                         <i class="fas fa-check-circle"></i> اختيار الكل
@@ -1586,6 +1602,7 @@
                                     <option value="الثلاثاء">الثلاثاء</option>
                                     <option value="الأربعاء">الأربعاء</option>
                                     <option value="الخميس">الخميس</option>
+                                    <option value="السبت">السبت</option>
                                 </select>
                             </div>
                             
@@ -1603,6 +1620,9 @@
                                     <option value="كيمياء">كيمياء</option>
                                     <option value="لغة عربية">لغة عربية</option>
                                     <option value="لغة إنجليزية">لغة إنجليزية</option>
+                                    <option value="اسلامية">اسلامية</option>
+                                    <option value="علوم">علوم</option>
+                                    
                                 </select>
                             </div>
                             
@@ -1610,12 +1630,18 @@
                                 <label for="scheduleGrade">الصف</label>
                                 <select id="scheduleGrade" class="form-control" required>
                                     <option value="">اختر الصف</option>
-                                    <option value="السابع">السابع</option>
-                                    <option value="الثامن">الثامن</option>
-                                    <option value="التاسع">التاسع</option>
-                                    <option value="العاشر">العاشر</option>
-                                    <option value="الحادي عشر">الحادي عشر</option>
-                                    <option value="الثاني عشر">الثاني عشر</option>
+                                    <option value="اول ابتدائي">اول ابتدائي</option>
+                                    <option value="ثاني ابتدائي">ثاني ابتدائي</option>
+                                    <option value="ثالث ابتدائي">ثالث ابتدائي</option>
+                                    <option value="رابع ابتدائي">رابع ابتدائي</option>
+                                    <option value="خامس ابتدائي">خامس ابتدائي</option>
+                                    <option value="سادس ابتدائي">سادس ابتدائي</option>
+                                    <option value="اول متوسط">اول متوسط</option>
+                                    <option value="ثاني متوسط">ثاني متوسط</option>
+                                    <option value="ثالث متوسط">ثالث متوسط</option>
+                                    <option value="رابع اعدادي">رابع اعدادي</option>
+                                    <option value="خامس اعدادي">خامس اعدادي</option>
+                                    <option value="سادس اعدادي">سادس اعدادي</option>
                                 </select>
                             </div>
                             
@@ -1744,7 +1770,7 @@
             
             <!-- تذييل الصفحة -->
             <footer class="footer">
-                <p>جميع الحقوق محفوظة © 2023 معهد التقدم للدروس الخصوصية | نظام الإدارة التعليمية</p>
+                <p>جميع الحقوق محفوظة © 2025 معهد التقدم للدروس الخصوصية | نظام الإدارة التعليمية</p>
             </footer>
         </main>
     </div>
